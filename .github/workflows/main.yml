@@ -6,17 +6,13 @@ on:
 jobs:
   sshx-session:
     runs-on: macos-latest
-    timeout-minutes: 360  # 6 hours
+    timeout-minutes: 360
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install SSHX
+      - name: Run SSHX and Keep Alive
         run: |
-          curl -sSf https://sshx.io/get | sh
-
-      - name: Start SSHX and Keep Alive
-        run: |
-          ~/.sshx/sshx &
+          curl -sSf https://sshx.io/get | sh -s run &
           sleep 6h
